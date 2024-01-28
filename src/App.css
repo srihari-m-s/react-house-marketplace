@@ -1,0 +1,8 @@
+.formItem {
+  &:has(input[required]) {
+    label::after {
+      content: " *";
+      color: hsl(var(--destructive));
+    }
+  }
+}
