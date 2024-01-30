@@ -1,7 +1,7 @@
 import NameForm from "@/components/profilePage/NameForm/NameForm";
 import { Button } from "@/components/ui/button";
 import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
 
 export default function Profile() {
@@ -25,8 +25,23 @@ export default function Profile() {
       {/* Edit Displayname form */}
       <div className="w-[30ch] my-6 space-y-6">
         <NameForm />
+
+        {/* Create Listing */}
+        <div className="">
+          <Link to={"/create-listing"} className="">
+            <Button className="w-full text-lg" variant="warning">
+              Create Listing
+            </Button>
+          </Link>
+        </div>
+
         {/* Logout */}
-        <Button type="button" onClick={handleLogout} className="w-full">
+        <Button
+          type="button"
+          onClick={handleLogout}
+          className="w-full text-lg"
+          size="lg"
+        >
           <LuLogOut className="inline mr-2 w-4 h-4" /> Logout
         </Button>
       </div>
