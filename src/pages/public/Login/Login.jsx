@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import GoogleIcon from "../../../assets/svg/googleIcon.svg";
 import { Link } from "react-router-dom";
 import { FaHouseChimney } from "react-icons/fa6";
+import ForgotPassword from "@/components/loginPage/ForgotPassword";
 
 export default function Login() {
   return (
@@ -24,6 +25,8 @@ export default function Login() {
             <CardContent className="space-y-6">
               {/* Login form */}
               <LoginForm />
+
+              <ForgotPassword />
 
               {/* Divider */}
               <div className="flex items-center">
