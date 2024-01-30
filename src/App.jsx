@@ -6,7 +6,6 @@ import Register from "./pages/public/Register/Register";
 
 // Private Routes
 import RootLayout from "./layouts/RootLayout/RootLayout";
-import Rents from "./pages/private/Rents/Rents";
 import Offers from "./pages/private/Offers/Offers";
 import Listing from "./pages/private/Listing/Listing";
 import Profile from "./pages/private/Profile/Profile";
@@ -23,11 +22,13 @@ function App() {
 
         {/* Private Routes */}
         <Route path="/" element={<RootLayout />}>
-          <Route path="rents" element={<Rents />} />
-          <Route path="offers" element={<Offers />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="offers" element={<Offers />} />
           <Route path="category/:categoryName" element={<Categories />} />
-          <Route path="listing/:address" element={<Listing />} />
+          <Route
+            path="category/:categoryName/:listingId"
+            element={<Listing />}
+          />
         </Route>
       </Routes>
 

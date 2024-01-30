@@ -1,19 +1,28 @@
 import { DummyHome } from "@/assets/dummy";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { FaHouseChimney, FaLocationDot, FaRegHeart } from "react-icons/fa6";
+import {
+  FaHouseChimney,
+  FaLocationDot,
+  FaRegHeart,
+  FaBath,
+} from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import { IoBed } from "react-icons/io5";
 
-export default function PropertyCard() {
+export default function PropertyCard({ categoryName, listingData, listingId }) {
   return (
-    <Card className="w-72 sm:w-[315px] bg-accent/60">
+    <Card className="w-72 sm:w-[315px] bg-accent/60 property-card">
       <CardContent className="p-4">
         <div className="grid gap-4">
           <div className="mx-auto">
-            <img
-              src={DummyHome}
-              alt="Home"
-              className="w-full aspect-square object-cover rounded-xl shadow-lg border"
-            />
+            <Link to={`/category/${categoryName}/${listingId}`}>
+              <img
+                src={listingData.imageUrls[0] || DummyHome}
+                alt={listingData.name}
+                className="w-full aspect-square object-cover rounded-xl shadow-lg border"
+              />
+            </Link>
           </div>
 
           <div className="space-y-4">
@@ -31,17 +40,50 @@ export default function PropertyCard() {
 
             {/* Price and Address */}
             <div className="grid">
-              <p className="text-xl text-blue-800 font-bold">$ 500,356</p>
-              <p className="truncate">
-                Address Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Quae, earum?
+              <p className="text-xl text-blue-800 font-bold">
+                {listingData.offer ? (
+                  <>
+                    <small className="text-destructive/60 line-through">
+                      {listingData.regularPrice}{" "}
+                    </small>
+                    {listingData.discountedPrice.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </>
+                ) : (
+                  listingData.regularPrice.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })
+                )}
+                {listingData.type === "rent" && (
+                  <small className="text-gray-500"> / Month</small>
+                )}
               </p>
+              <p className="truncate">{listingData.location}</p>
+            </div>
+
+            {/* Bed and Baths */}
+            <div className="grid grid-cols-2">
+              <span className="flex items-center">
+                <IoBed className="inline mr-2" />{" "}
+                {listingData.bedrooms > 1
+                  ? `${listingData.bedrooms} Bedrooms`
+                  : "1 Bedroom"}
+              </span>
+              <span className="flex items-center">
+                <FaBath className="inline mr-2" />{" "}
+                {listingData.bathrooms > 1
+                  ? `${listingData.bathrooms} Bathrooms`
+                  : "1 Bathroom"}
+              </span>
             </div>
 
             {/* Location */}
             <div className="flex items-center justify-between">
               <span className="flex items-center">
-                <FaLocationDot />
+                <FaLocationDot className="mr-1" />
                 Location
               </span>
 

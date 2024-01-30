@@ -14,7 +14,11 @@ export default function Categories() {
       <h1 className="text-3xl font-bold capitalize ">{categoryName}</h1>
 
       <div className="inline-flex flex-wrap gap-4">
-        {loading ? <Spinner /> : <PropertiesList listings={listings} />}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <PropertiesList listings={listings} categoryName={categoryName} />
+        )}
       </div>
     </div>
   );
