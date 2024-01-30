@@ -1,3 +1,4 @@
+import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import { FaCircleUser, FaHouseFlag } from "react-icons/fa6";
 import { MdMenu } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
@@ -18,6 +19,8 @@ const NAVINKS = [
 ];
 
 export default function Navbar() {
+  const { user, loggedIn } = useAuthStatus();
+
   return (
     <div className="bg-gradient-to-b from-secondary/20 to-secondary border-b backdrop-blur supports-backdrop-blur:bg-white/95 sticky top-0 z-40">
       <nav
@@ -67,7 +70,8 @@ export default function Navbar() {
             to="/login"
             className="text-lg font-semibold leading-6 text-gray-900 py-2 px-4 rounded-full hover:bg-sky-700 hover:text-white flex items-center"
           >
-            <FaCircleUser className="text-3xl inline mr-2" /> Log in
+            <FaCircleUser className="text-3xl inline mr-2" />{" "}
+            {loggedIn ? user.displayName : "Log in"}
           </Link>
         </div>
       </nav>

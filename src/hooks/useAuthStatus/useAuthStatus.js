@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 export default function useAuthStatus() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkingStatus, setCheckingStatus] = useState(true);
+  const [user, setUser] = useState({});
   const isMounted = useRef(true);
 
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function useAuthStatus() {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setLoggedIn(true);
+          setUser(user);
         }
         setCheckingStatus(false);
       });
@@ -22,5 +24,5 @@ export default function useAuthStatus() {
     };
   }, [isMounted]);
 
-  return { loggedIn, checkingStatus };
+  return { loggedIn, checkingStatus, user };
 }

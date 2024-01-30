@@ -26,8 +26,15 @@ export default function RentSlider() {
       <div className="overflow-x-auto">
         <div className="inline-flex gap-5 pb-2">
           {listings.length ? (
-            listings.map((_, index) => {
-              return <PropertyCard key={index} />;
+            listings.map((listing) => {
+              return (
+                <PropertyCard
+                  key={listing.id}
+                  categoryName={"rent"}
+                  listingData={listing.data}
+                  listingId={listing.id}
+                />
+              );
             })
           ) : (
             <p>No Listings for Rent</p>

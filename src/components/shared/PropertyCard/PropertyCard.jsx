@@ -15,15 +15,15 @@ export default function PropertyCard({ categoryName, listingData, listingId }) {
     <Card className="w-72 sm:w-[315px] bg-accent/60 property-card">
       <CardContent className="p-4">
         <div className="grid gap-4">
-          <div className="mx-auto">
-            <Link to={`/category/${categoryName}/${listingId}`}>
+          <Link to={`/category/${categoryName}/${listingId}`}>
+            <div className="mx-auto rounded-xl overflow-hidden">
               <img
                 src={listingData.imageUrls[0] || DummyHome}
                 alt={listingData.name}
-                className="w-full aspect-square object-cover rounded-xl shadow-lg border"
+                className="w-full aspect-square object-cover rounded-xl shadow-lg border duration-500 hover:scale-110"
               />
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           <div className="space-y-4">
             {/* Actions */}
@@ -39,30 +39,32 @@ export default function PropertyCard({ categoryName, listingData, listingId }) {
             </div>
 
             {/* Price and Address */}
-            <div className="grid">
-              <p className="text-xl text-blue-800 font-bold">
-                {listingData.offer ? (
-                  <>
-                    <small className="text-destructive/60 line-through">
-                      {listingData.regularPrice}{" "}
-                    </small>
-                    {listingData.discountedPrice.toLocaleString("en-US", {
+            <Link to={`/category/${categoryName}/${listingId}`}>
+              <div className="grid">
+                <p className="text-xl text-blue-800 font-bold">
+                  {listingData.offer ? (
+                    <>
+                      <small className="text-destructive/60 line-through">
+                        {listingData.regularPrice}{" "}
+                      </small>
+                      {listingData.discountedPrice.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </>
+                  ) : (
+                    listingData.regularPrice.toLocaleString("en-US", {
                       style: "currency",
                       currency: "USD",
-                    })}
-                  </>
-                ) : (
-                  listingData.regularPrice.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })
-                )}
-                {listingData.type === "rent" && (
-                  <small className="text-gray-500"> / Month</small>
-                )}
-              </p>
-              <p className="truncate">{listingData.location}</p>
-            </div>
+                    })
+                  )}
+                  {listingData.type === "rent" && (
+                    <small className="text-gray-500"> / Month</small>
+                  )}
+                </p>
+                <p className="truncate">{listingData.location}</p>
+              </div>
+            </Link>
 
             {/* Bed and Baths */}
             <div className="grid grid-cols-2">
