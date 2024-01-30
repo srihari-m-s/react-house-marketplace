@@ -1,9 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import GoogleIcon from "../../../assets/svg/googleIcon.svg";
 import { Link } from "react-router-dom";
 import RegisterForm from "@/components/registerPage/RegisterForm";
 import { FaHouseChimney } from "react-icons/fa6";
+import OAuth from "@/components/shared/OAuth/OAuth";
 
 export default function Register() {
   return (
@@ -26,16 +25,8 @@ export default function Register() {
               </div>
 
               {/* Google OAuth */}
-              <div className="grid place-items-center">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="py-6 bg-transparent"
-                >
-                  <img src={GoogleIcon} alt="Google" className="h-8 w-8 mr-2" />{" "}
-                  Sign Up With Google
-                </Button>
-              </div>
+              <OAuth />
+
               <p className="text-center">
                 Already have an account?{" "}
                 <Link to={"/login"} className="text-sky-600 font-bold">

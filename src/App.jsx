@@ -10,6 +10,7 @@ import Rents from "./pages/private/Rents/Rents";
 import Offers from "./pages/private/Offers/Offers";
 import Listing from "./pages/private/Listing/Listing";
 import Profile from "./pages/private/Profile/Profile";
+import Categories from "./pages/private/Categories/Categories";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="rents" element={<Rents />} />
           <Route path="offers" element={<Offers />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="category/:categoryName" element={<Categories />} />
           <Route path="listing/:address" element={<Listing />} />
         </Route>
       </Routes>

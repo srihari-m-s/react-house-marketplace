@@ -18,7 +18,7 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <main className="container mx-auto pb-8">
+      <main className="container mx-auto pb-8 min-h-[calc(100dvh-70px-289px)]">
         <Outlet />
       </main>
       <Footer />
