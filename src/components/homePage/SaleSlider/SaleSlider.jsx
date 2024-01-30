@@ -4,7 +4,7 @@ import useFetchListings from "@/hooks/useFetchListings/useFetchListings";
 import { Link } from "react-router-dom";
 
 export default function SaleSlider() {
-  const { listings, loading } = useFetchListings("sale");
+  const { listings, loading } = useFetchListings("type", "sale");
 
   if (loading) {
     return <Spinner />;

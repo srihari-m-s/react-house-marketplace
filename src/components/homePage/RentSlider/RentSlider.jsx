@@ -4,7 +4,7 @@ import useFetchListings from "@/hooks/useFetchListings/useFetchListings";
 import { Link } from "react-router-dom";
 
 export default function RentSlider() {
-  const { listings, loading } = useFetchListings("rent");
+  const { listings, loading } = useFetchListings("type", "rent");
 
   if (loading) {
     return <Spinner />;

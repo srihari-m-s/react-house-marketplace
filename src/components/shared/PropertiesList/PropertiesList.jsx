@@ -15,7 +15,7 @@ export default function PropertiesList({ listings, categoryName }) {
           );
         })
       ) : (
-        <p>No properties in this category</p>
+        <p>No Properties in this Category</p>
       )}
     </>
   );

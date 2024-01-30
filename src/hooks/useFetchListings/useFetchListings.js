@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function useFetchListings(param) {
+export default function useFetchListings(dataKey, param) {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +23,7 @@ export default function useFetchListings(param) {
         // Create a Query
         const q = query(
           listingsRef,
-          where("type", "==", param),
+          where(dataKey, "==", param),
           orderBy("timestamp", "desc"),
           limit(10)
         );
@@ -51,7 +51,7 @@ export default function useFetchListings(param) {
     }
 
     fetchListings();
-  }, [param]);
+  }, [dataKey, param]);
 
   return { listings, loading };
 }

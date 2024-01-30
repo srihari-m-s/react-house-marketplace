@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export default function Categories() {
   const { categoryName } = useParams();
-  const { listings, loading } = useFetchListings(categoryName);
+  const { listings, loading } = useFetchListings("type", categoryName);
 
   return (
     <div className="py-6 space-y-6">
