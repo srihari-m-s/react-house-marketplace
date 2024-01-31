@@ -19,7 +19,7 @@ export default function OfferInput({ form }) {
     <div className="space-y-6">
       <FormField
         control={form.control}
-        name="Offer"
+        name="offer"
         render={({ field }) => (
           <FormItem className="formItem flex items-center gap-4">
             <FormLabel className="">Offer</FormLabel>
@@ -31,7 +31,7 @@ export default function OfferInput({ form }) {
                 defaultChecked={field.value}
                 onClick={(e) => {
                   handleOfferClick(e);
-                  field.onChange;
+                  field.onChange(e);
                 }}
               />
             </FormControl>
@@ -71,26 +71,29 @@ export default function OfferInput({ form }) {
         />
 
         {/* Discounted Price */}
-        <FormField
-          control={form.control}
-          name="discountedPrice"
-          render={({ field }) => (
-            <FormItem className="formItem">
-              <FormLabel className="">Discounted Price</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Discounted Price"
-                  type="number"
-                  className=""
-                  {...field}
-                  disabled={!isOffer}
-                  required={isOffer}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {isOffer ? (
+          <FormField
+            control={form.control}
+            name="discountedPrice"
+            render={({ field }) => (
+              <FormItem className="formItem">
+                <FormLabel className="">Discounted Price</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Discounted Price"
+                    type="number"
+                    className=""
+                    {...field}
+                    required={isOffer}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -30,51 +30,55 @@ export default function GeolocationInput({
       </div>
 
       {/* lat and lng */}
-      <div className="flex flex-col gap-4">
-        {/* Latitude */}
-        <FormField
-          control={form.control}
-          name="latitude"
-          render={({ field }) => (
-            <FormItem className="formItem">
-              <FormLabel className="">Latitude</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Latitude"
-                  type="number"
-                  className=""
-                  {...field}
-                  disabled={useGeocoding}
-                  required={!useGeocoding}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      {!useGeocoding ? (
+        <div className="flex flex-col gap-4">
+          {/* Latitude */}
+          <FormField
+            control={form.control}
+            name="latitude"
+            render={({ field }) => (
+              <FormItem className="formItem">
+                <FormLabel className="">Latitude</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Latitude"
+                    type="number"
+                    className=""
+                    {...field}
+                    disabled={useGeocoding}
+                    required={!useGeocoding}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Longitude */}
-        <FormField
-          control={form.control}
-          name="longitude"
-          render={({ field }) => (
-            <FormItem className="formItem">
-              <FormLabel className="">Longitude</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Longitude"
-                  type="number"
-                  className=""
-                  {...field}
-                  disabled={useGeocoding}
-                  required={!useGeocoding}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
+          {/* Longitude */}
+          <FormField
+            control={form.control}
+            name="longitude"
+            render={({ field }) => (
+              <FormItem className="formItem">
+                <FormLabel className="">Longitude</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Longitude"
+                    type="number"
+                    className=""
+                    {...field}
+                    disabled={useGeocoding}
+                    required={!useGeocoding}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

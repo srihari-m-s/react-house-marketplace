@@ -104,7 +104,7 @@ export default function CreateListingForm() {
 
         {/* Submit */}
         <div className="">
-          <Button type="submit" size="lg" className="text-base">
+          <Button type="submit" size="lg" className="text-base w-full">
             Submit
           </Button>
         </div>
