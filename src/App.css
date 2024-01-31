@@ -1,3 +1,7 @@
+input {
+  border: 1px solid hsl(var(--input));
+}
+
 .formItem {
   &:has(input[required]) {
     label::after {
