@@ -6,6 +6,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function NameAndLocationInput({ form }) {
   return (
@@ -33,7 +34,13 @@ export default function NameAndLocationInput({ form }) {
           <FormItem className="formItem">
             <FormLabel className="">Location</FormLabel>
             <FormControl>
-              <Input placeholder="Location" className="" {...field} required />
+              <Textarea
+                placeholder="Address"
+                className="resize-none text-base"
+                {...field}
+                required
+                rows={3}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

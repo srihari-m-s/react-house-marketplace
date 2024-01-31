@@ -8,7 +8,7 @@ export default function CreateListing() {
       <hr className="mb-6 mt-2" />
 
       {/* Create Listing form */}
-      <div className="max-w-2xl">
+      <div className="max-w-2xl mx-auto">
         <CreateListingForm />
       </div>
     </div>

@@ -9,4 +9,11 @@ input {
       color: hsl(var(--destructive));
     }
   }
+
+  &:has(textarea[required]) {
+    label::after {
+      content: " *";
+      color: hsl(var(--destructive));
+    }
+  }
 }

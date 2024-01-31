@@ -23,7 +23,7 @@ export default function Profile() {
       <hr />
 
       {/* Edit Displayname form */}
-      <div className="w-[30ch] my-6 space-y-6">
+      <div className="w-[30ch] my-6 space-y-6 mx-auto">
         <NameForm />
 
         {/* Create Listing */}

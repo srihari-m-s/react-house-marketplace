@@ -37,8 +37,8 @@ const createListingSchema = z.object({
         type: z.string(),
       })
     )
-    .refine((data) => data.length <= 6, {
-      message: "You can upload up to 6 images.",
+    .refine((data) => data.length >= 2 && data.length <= 6, {
+      message: "Please upload at least 2 and up to 6 images.",
     })
     .refine((data) => data.every((file) => file.type.startsWith("image/")), {
       message: "All files must be images.",
