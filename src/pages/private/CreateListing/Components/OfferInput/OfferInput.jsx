@@ -1,3 +1,11 @@
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 export default function OfferInput({ form }) {
@@ -9,53 +17,80 @@ export default function OfferInput({ form }) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <label htmlFor="parking" className="cursor-pointer">
-          Offer
-        </label>
-        <input
-          type="checkbox"
-          name="offer"
-          id="offer"
-          className="custom-checkbox"
-          {...form.register("parking")}
-          onClick={handleOfferClick}
-        />
-      </div>
+      <FormField
+        control={form.control}
+        name="Offer"
+        render={({ field }) => (
+          <FormItem className="formItem flex items-center gap-4">
+            <FormLabel className="">Offer</FormLabel>
+            <FormControl>
+              <input
+                type="checkbox"
+                name="offer"
+                className="custom-checkbox"
+                defaultChecked={field.value}
+                onClick={(e) => {
+                  handleOfferClick(e);
+                  field.onChange;
+                }}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
       {/* Prices */}
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2 formItem">
-          <label htmlFor="reg-price">Regular Price</label>
-          <input
-            type="number"
-            name="regularPrice"
-            id="reg-price"
-            className="p-2 focus:outline-primary"
-            placeholder="Regular Price"
-            {...form.register("regularPrice")}
-            required
-          />
-          {form.errors?.regularPrice && (
-            <p role="alert">Regular Price is Required</p>
+        {/* Regular Price */}
+        <FormField
+          control={form.control}
+          name="regularPrice"
+          render={({ field }) => (
+            <FormItem className="formItem">
+              <FormLabel className="">
+                Regular Price{" "}
+                {form.getValues().type === "rent" ? (
+                  <small className="text-gray-500">/ month</small>
+                ) : (
+                  ""
+                )}
+              </FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Regular Price"
+                  type="number"
+                  className=""
+                  {...field}
+                  required
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
-        </div>
-        <div className="flex flex-col gap-2 formItem">
-          <label htmlFor="discounted-price">Discounted Price</label>
-          <input
-            type="number"
-            name="discountedPrice"
-            id="discounted-price"
-            className="p-2 focus:outline-primary disabled:bg-gray-300 "
-            placeholder="Discounted Price"
-            disabled={!isOffer}
-            required={isOffer}
-            {...form.register("discountedPrice")}
-          />
-          {form.errors?.regularPrice && (
-            <p role="alert">Regular Price is Required</p>
+        />
+
+        {/* Discounted Price */}
+        <FormField
+          control={form.control}
+          name="discountedPrice"
+          render={({ field }) => (
+            <FormItem className="formItem">
+              <FormLabel className="">Discounted Price</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Discounted Price"
+                  type="number"
+                  className=""
+                  {...field}
+                  disabled={!isOffer}
+                  required={isOffer}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
-        </div>
+        />
       </div>
     </div>
   );

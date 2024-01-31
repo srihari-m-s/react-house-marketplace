@@ -7,38 +7,38 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-export default function BedsAndBathsInput({ form }) {
+export default function NameAndLocationInput({ form }) {
   return (
-    <div className="space-y-6">
-      {/* Bedrooms */}
+    <>
+      {/* Name */}
       <FormField
         control={form.control}
-        name="bedrooms"
+        name="name"
         render={({ field }) => (
           <FormItem className="formItem">
-            <FormLabel className="">Bedrooms</FormLabel>
+            <FormLabel className="">House Name</FormLabel>
             <FormControl>
-              <Input type="number" {...field} min={1} required />
+              <Input placeholder="Name" className="" {...field} required />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Bathrooms */}
+      {/* Location */}
       <FormField
         control={form.control}
-        name="bathrooms"
+        name="location"
         render={({ field }) => (
           <FormItem className="formItem">
-            <FormLabel className="">Bathrooms</FormLabel>
+            <FormLabel className="">Location</FormLabel>
             <FormControl>
-              <Input type="number" {...field} min={1} required />
+              <Input placeholder="Location" className="" {...field} required />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
-    </div>
+    </>
   );
 }
