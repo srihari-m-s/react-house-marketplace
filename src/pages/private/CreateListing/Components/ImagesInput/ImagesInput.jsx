@@ -16,6 +16,7 @@ export default function ImagesInput({ form }) {
   function handleImagesInput(e) {
     const files = e.target.files;
     setSelectedFiles(Object.values(files));
+    // console.log(files[0]);
   }
 
   return (
