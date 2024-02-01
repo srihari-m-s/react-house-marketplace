@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -17,23 +16,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast from "react-hot-toast";
-
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, {
-      message: "Email is required.",
-    })
-    .email(),
-  password: z
-    .string()
-    .min(6, {
-      message: "Password must be at least 6 characters.",
-    })
-    .max(20, {
-      message: "Password must be atmost 20 characters",
-    }),
-});
+import { loginSchema } from "@/helpers/FormSchemas";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -43,7 +26,7 @@ export default function LoginForm() {
 
   // 1. Define your form.
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",

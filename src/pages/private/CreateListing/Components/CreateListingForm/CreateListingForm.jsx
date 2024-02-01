@@ -1,7 +1,6 @@
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import NameAndLocationInput from "../NameAndLocationInput/NameAndLocationInput";
 import TypeInput from "../TypeInput/TypeInput";
 import OfferInput from "../OfferInput/OfferInput";
@@ -18,39 +17,9 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firbase.config";
 import { useNavigate } from "react-router-dom";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { createListingSchema } from "@/helpers/FormSchemas";
 
 const MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
-const createListingSchema = z.object({
-  name: z.string().min(1, {
-    message: "Required",
-  }),
-  location: z.string().min(1, {
-    message: "Required",
-  }),
-  type: z.string(),
-  offer: z.boolean(),
-  regularPrice: z.coerce.number(),
-  discountedPrice: z.coerce.number(),
-  parking: z.boolean(),
-  furnitured: z.boolean(),
-  bedrooms: z.coerce.number(),
-  bathrooms: z.coerce.number(),
-  latitude: z.coerce.number(),
-  longitude: z.coerce.number(),
-  imageUrls: z
-    .array(z.instanceof(File))
-    .refine((data) => data.length >= 2 && data.length <= 6, {
-      message: "Please provide at least 2 and up to 6 File objects.",
-    })
-    .refine(
-      (data) =>
-        Object.values(data).every((file) => file.type.startsWith("image/")),
-      {
-        message: "All files must be image files.",
-      }
-    ),
-});
 
 export default function CreateListingForm() {
   const navigate = useNavigate();

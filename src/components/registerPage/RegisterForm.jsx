@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -22,39 +21,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firbase.config";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
-const formSchema = z
-  .object({
-    fullname: z.string().min(1, {
-      message: "Full Name is required",
-    }),
-    email: z
-      .string()
-      .min(1, {
-        message: "Email is required.",
-      })
-      .email(),
-    password: z
-      .string()
-      .min(6, {
-        message: "Password must be at least 6 characters.",
-      })
-      .max(20, {
-        message: "Password must be atmost 20 characters",
-      }),
-    confirmPassword: z
-      .string()
-      .min(6, {
-        message: "Password must be at least 6 characters.",
-      })
-      .max(20, {
-        message: "Password must be atmost 20 characters",
-      }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Both passwords should match.",
-  });
+import { registerSchema } from "@/helpers/FormSchemas";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -64,7 +31,7 @@ export default function RegisterForm() {
 
   // 1. Define your form.
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       fullname: "",
       email: "",
