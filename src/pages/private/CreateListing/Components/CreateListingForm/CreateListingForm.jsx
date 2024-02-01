@@ -18,11 +18,13 @@ import { db } from "@/firbase.config";
 import { useNavigate } from "react-router-dom";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { createListingSchema } from "@/helpers/FormSchemas";
+import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 
 const MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function CreateListingForm() {
   const navigate = useNavigate();
+  const { user } = useAuthStatus();
   const form = useForm({
     resolver: zodResolver(createListingSchema),
     defaultValues: {
@@ -76,21 +78,22 @@ export default function CreateListingForm() {
 
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
-      formData.location =
+
+      let formattedLocation =
         data.status === "ZERO_RESULTS"
           ? undefined
           : data.results[0]?.formatted_address;
 
       if (
-        formData.location === undefined ||
-        formData.location.includes("undefined")
+        formattedLocation === undefined ||
+        formattedLocation.includes("undefined")
       ) {
         setLoading(false);
         toast.error("Please enter a Correct Address");
         return;
       }
 
-      console.log("From geocoding", data);
+      // console.log("From geocoding", data);
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
@@ -114,10 +117,14 @@ export default function CreateListingForm() {
     delete formData.longitude;
     // update imageUrls field
     formData.imageUrls = uploadedImageUrls;
+    // Add geolocation
     formData.geolocation = geolocation;
+    // Add userRef
+    formData.userRef = user.uid;
+    // Add timestamp
     formData.timestamp = serverTimestamp();
     !formData.offer && delete formData.discountedPrice;
-    console.log("Data submitted to firestore", formData);
+    // console.log("Data submitted to firestore", formData);
 
     // Add listing to firestore
     try {
