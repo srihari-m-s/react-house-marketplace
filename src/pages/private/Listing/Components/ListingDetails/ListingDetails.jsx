@@ -1,12 +1,30 @@
 import { Badge } from "@/components/ui/badge";
-import { FaBath } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
+import { FaBath, FaShare } from "react-icons/fa6";
 import { IoBed } from "react-icons/io5";
 
 export default function ListingDetails({ listingData }) {
+  function handleShareClick() {
+    navigator.clipboard.writeText(window.location.href);
+    toast.success("Link Copied to Clipboard!");
+  }
+
   return (
     <>
       {/* name */}
-      <h2 className="text-2xl font-bold">{listingData.name}</h2>
+      <div className="flex items-center gap-4">
+        <h2 className="text-2xl font-bold">{listingData.name}</h2>
+
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full flex items-center justify-center border-0 p-2 hover:text-sky-700"
+          onClick={handleShareClick}
+        >
+          <FaShare className="text-2xl" />
+        </Button>
+      </div>
       {/* location */}
       <p className="text-lg">{listingData.location}</p>
       {/* type and price */}
@@ -63,7 +81,7 @@ export default function ListingDetails({ listingData }) {
             }
             variant={"warning"}
           >
-            {"Parking"}
+            {"Parking Spot"}
           </Badge>
         ) : (
           ""

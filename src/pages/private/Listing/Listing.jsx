@@ -5,6 +5,7 @@ import useFetchSingleListing from "@/hooks/useFetchSingleListing/useFetchSingleL
 import { useParams } from "react-router-dom";
 import ContactListingOwner from "./Components/ContactListingOwner/ContactListingOwner";
 import ListingDetails from "./Components/ListingDetails/ListingDetails";
+import LocationLeaflet from "./Components/LocationLeaflet/LocationLeaflet";
 
 export default function Listing() {
   const { listingId } = useParams();
@@ -34,6 +35,10 @@ export default function Listing() {
       <div className="">
         <h2 className="text-2xl font-bold">Location</h2>
         {/* Maps */}
+        <LocationLeaflet
+          position={Object.values(listingData.geolocation)}
+          location={listingData.location}
+        />
       </div>
 
       {/* Contact Landlord */}
