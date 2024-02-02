@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 // import Autoplay from "embla-carousel-autoplay";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function ImageCarousel({ imageUrls, address, price, hero }) {
   const [api, setApi] = useState();
@@ -51,23 +52,30 @@ export default function ImageCarousel({ imageUrls, address, price, hero }) {
           <CarouselItem key={index}>
             <div className="">
               <Card className="overflow-hidden">
-                <CardContent className="flex items-center justify-center p-0 relative before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 h-[30vw]">
-                  <img
-                    src={url || DummyHome}
-                    alt="Dummy Home"
-                    className="w-full object-cover"
-                  />
-
-                  {hero ? (
-                    <div className="absolute bottom-10 left-10 space-y-2">
-                      <h1 className="text-4xl text-white">{address}</h1>
-                      <Badge className={"text-xl rounded-full px-6"}>
-                        {price}
-                      </Badge>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                <CardContent
+                  className={`h-[30vw] flex items-center justify-center p-0 relative ${
+                    hero
+                      ? "before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30"
+                      : ""
+                  }`}
+                >
+                  <AspectRatio ratio={16 / 9}>
+                    <img
+                      src={url || DummyHome}
+                      alt="Dummy Home"
+                      className="w-full object-cover"
+                    />
+                    {hero ? (
+                      <div className="absolute bottom-10 left-10 space-y-2">
+                        <h1 className="text-4xl text-white">{address}</h1>
+                        <Badge className={"text-xl rounded-full px-6"}>
+                          {price}
+                        </Badge>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </AspectRatio>
                 </CardContent>
               </Card>
             </div>

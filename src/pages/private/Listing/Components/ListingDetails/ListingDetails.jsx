@@ -36,7 +36,7 @@ export default function ListingDetails({ listingData }) {
           For {listingData.type}
         </Badge>
 
-        <span className="flex items-center gap-2 text-lg">
+        <span className="flex items-center gap-2 text-lg font-bold">
           {listingData.offer ? (
             <>
               <small className="text-destructive/60 line-through">
