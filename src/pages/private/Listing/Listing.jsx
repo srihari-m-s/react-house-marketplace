@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import ContactListingOwner from "./Components/ContactListingOwner/ContactListingOwner";
 import ListingDetails from "./Components/ListingDetails/ListingDetails";
 import LocationLeaflet from "./Components/LocationLeaflet/LocationLeaflet";
+import ImageCarousel from "@/components/homePage/ImageCarousel/ImageCarousel";
 
 export default function Listing() {
   const { listingId } = useParams();
@@ -22,9 +23,26 @@ export default function Listing() {
   }
 
   return (
-    <main className="py-6 space-y-6">
+    <main className="pb-6 space-y-6">
       {/* Pictures slider */}
-      <p className="">Pictures Slider</p>
+      <div className="">
+        <ImageCarousel
+          imageUrls={listingData.imageUrls}
+          address={listingData.location}
+          price={
+            listingData.offer
+              ? listingData.discountedPrice.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+              : listingData.regularPrice.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })
+          }
+          hero={false}
+        />
+      </div>
 
       {/* Listing details */}
       <div className="space-y-4 max-w-2xl">
@@ -32,7 +50,7 @@ export default function Listing() {
       </div>
 
       {/* Listing Location */}
-      <div className="">
+      <div className="space-y-4">
         <h2 className="text-2xl font-bold">Location</h2>
         {/* Maps */}
         <LocationLeaflet

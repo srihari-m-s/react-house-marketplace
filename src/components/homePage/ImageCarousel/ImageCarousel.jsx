@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 // import Autoplay from "embla-carousel-autoplay";
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ imageUrls, address, price, hero }) {
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
 
@@ -38,7 +38,7 @@ export default function ImageCarousel() {
       setApi={setApi}
       opts={{
         loop: true,
-        duration: 45,
+        duration: 30,
       }}
       //   plugins={[
       //     Autoplay({
@@ -47,23 +47,27 @@ export default function ImageCarousel() {
       //   ]}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {imageUrls.map((url, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div className="">
               <Card className="overflow-hidden">
-                <CardContent className="flex items-center justify-center p-0 relative before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 ">
+                <CardContent className="flex items-center justify-center p-0 relative before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 h-[30vw]">
                   <img
-                    src={DummyHome}
+                    src={url || DummyHome}
                     alt="Dummy Home"
                     className="w-full object-cover"
                   />
 
-                  <div className="absolute bottom-10 left-10 space-y-2">
-                    <h1 className="text-4xl text-white">Address {index + 1}</h1>
-                    <Badge className={"text-xl rounded-full px-6"}>
-                      500k $
-                    </Badge>
-                  </div>
+                  {hero ? (
+                    <div className="absolute bottom-10 left-10 space-y-2">
+                      <h1 className="text-4xl text-white">{address}</h1>
+                      <Badge className={"text-xl rounded-full px-6"}>
+                        {price}
+                      </Badge>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -99,3 +103,10 @@ export default function ImageCarousel() {
     </Carousel>
   );
 }
+
+ImageCarousel.defaultProps = {
+  imageUrls: [DummyHome, DummyHome, DummyHome, DummyHome, DummyHome],
+  address: "",
+  price: "",
+  hero: false,
+};
