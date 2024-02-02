@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
+import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+import UsersListings from "@/components/profilePage/UsersListings/UsersListings";
 
 export default function Profile() {
   const auth = getAuth();
+  const { user } = useAuthStatus();
   const navigate = useNavigate();
   // Local states
 
@@ -15,12 +18,12 @@ export default function Profile() {
   }
 
   return (
-    <div className="py-8">
+    <div className="py-8 space-y-6">
       {/* Heading */}
       <div className="">
         <h1 className="text-3xl">Profile</h1>
+        <hr />
       </div>
-      <hr />
 
       {/* Edit Displayname form */}
       <div className="w-[30ch] my-6 space-y-6 mx-auto">
@@ -45,6 +48,9 @@ export default function Profile() {
           <LuLogOut className="inline mr-2 w-4 h-4" /> Logout
         </Button>
       </div>
+
+      {/* LoggedIn User's listing */}
+      {Object.keys(user).length ? <UsersListings user={user} /> : ""}
     </div>
   );
 }

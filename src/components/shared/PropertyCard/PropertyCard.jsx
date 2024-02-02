@@ -9,8 +9,17 @@ import {
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { IoBed } from "react-icons/io5";
+import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+import DeleteListing from "./DeleteListing";
 
-export default function PropertyCard({ categoryName, listingData, listingId }) {
+export default function PropertyCard({
+  categoryName,
+  listingData,
+  listingId,
+  handleDelete,
+}) {
+  const { user } = useAuthStatus();
+
   return (
     <Card className="w-72 sm:w-[315px] bg-accent/60 property-card">
       <CardContent className="p-4">
@@ -93,6 +102,17 @@ export default function PropertyCard({ categoryName, listingData, listingId }) {
                 Featured
               </Badge>
             </div>
+
+            {/* Show Delete if listing belongs LoggedIn user */}
+            {user.uid === listingData.userRef && handleDelete ? (
+              <DeleteListing
+                listingData={listingData}
+                listingId={listingId}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </CardContent>
