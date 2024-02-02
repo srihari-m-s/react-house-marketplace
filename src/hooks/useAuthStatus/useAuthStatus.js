@@ -14,6 +14,9 @@ export default function useAuthStatus() {
         if (user) {
           setLoggedIn(true);
           setUser(user);
+        } else {
+          setLoggedIn(false);
+          setUser({});
         }
         setCheckingStatus(false);
       });

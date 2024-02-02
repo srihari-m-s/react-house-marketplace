@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const NAVINKS = [
   {
-    label: "Explore",
+    label: "Home",
     link: "/",
   },
   {
@@ -49,15 +49,20 @@ export default function Navbar() {
         </div>
 
         {/* Menu */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           {NAVINKS.map(({ label, link }, index) => {
             return (
               <NavLink
                 to={link}
                 key={`${label}-${index}`}
-                className={
-                  "text-lg py-1 px-4 rounded-md hover:bg-sky-700 hover:text-white "
-                }
+                className={({ isActive }) => {
+                  return `text-lg py-1 px-4 rounded-md hover:bg-sky-700 hover:text-white ${
+                    isActive ? "bg-sky-700/60 text-white" : ""
+                  }`;
+                }}
+                // className={
+                //   "text-lg py-1 px-4 rounded-md hover:bg-sky-700 hover:text-white "
+                // }
               >
                 {label}
               </NavLink>
@@ -67,7 +72,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            to="/login"
+            to={loggedIn ? "/profile" : "/login"}
             className="text-lg font-semibold leading-6 text-gray-900 py-2 px-4 rounded-full hover:bg-sky-700 hover:text-white flex items-center"
           >
             <FaCircleUser className="text-3xl inline mr-2" />{" "}
