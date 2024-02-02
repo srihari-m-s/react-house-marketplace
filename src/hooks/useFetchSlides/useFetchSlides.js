@@ -1,18 +1,11 @@
 import { db } from "@/firbase.config";
-import {
-  collection,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
-export default function useFetchListings(dataKey, param, itemLimit) {
-  const [listings, setListings] = useState([]);
+export default function useFetchSlides(itemLimit) {
+  const [slideListings, setSlideListings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchListings() {
@@ -23,7 +16,6 @@ export default function useFetchListings(dataKey, param, itemLimit) {
         // Create a Query
         const q = query(
           listingsRef,
-          where(dataKey, "==", param),
           orderBy("timestamp", "desc"),
           limit(itemLimit)
         );
@@ -37,13 +29,18 @@ export default function useFetchListings(dataKey, param, itemLimit) {
         querySnap.forEach((doc) => {
           return listingsArray.push({
             id: doc.id,
-            data: doc.data(),
+            type: doc.data().type,
+            imageUrl: doc.data().imageUrls[0],
+            address: doc.data().location,
+            price: doc.data().offer
+              ? doc.data().discountedPrice
+              : doc.data().regularPrice,
           });
         });
 
-        setListings(listingsArray);
+        setSlideListings(listingsArray);
       } catch (error) {
-        toast.error(`Could not fetch listings for ${param}`);
+        setError(`Could not fetch Slide listings`);
         console.log(error);
       } finally {
         setLoading(false);
@@ -51,11 +48,11 @@ export default function useFetchListings(dataKey, param, itemLimit) {
     }
 
     fetchListings();
-  }, [dataKey, param, itemLimit]);
+  }, [itemLimit]);
 
-  return { listings, loading };
+  return { slideListings, loading, error };
 }
 
-useFetchListings.defaultProps = {
-  itemLimit: 10,
+useFetchSlides.defaultProps = {
+  itemLimit: 5,
 };

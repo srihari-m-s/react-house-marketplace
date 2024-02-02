@@ -26,22 +26,7 @@ export default function Listing() {
     <main className="pb-6 space-y-6">
       {/* Pictures slider */}
       <div className="">
-        <ImageCarousel
-          imageUrls={listingData.imageUrls}
-          address={listingData.location}
-          price={
-            listingData.offer
-              ? listingData.discountedPrice.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })
-              : listingData.regularPrice.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })
-          }
-          hero={false}
-        />
+        <ImageCarousel slideDataArray={listingData.imageUrls} hero={false} />
       </div>
 
       {/* Listing details */}

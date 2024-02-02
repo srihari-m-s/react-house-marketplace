@@ -10,16 +10,12 @@ import {
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 // import Autoplay from "embla-carousel-autoplay";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useNavigate } from "react-router-dom";
 
-export default function ImageCarousel({ imageUrls, address, price, hero }) {
+export default function ImageCarousel({ slideDataArray, hero }) {
+  const navigate = useNavigate();
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
-
-  function handleIndicatorClick(_, index) {
-    console.log("Go to:", index);
-    api.scrollTo(index);
-  }
 
   useEffect(() => {
     if (!api) {
@@ -32,6 +28,21 @@ export default function ImageCarousel({ imageUrls, address, price, hero }) {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
+
+  // Handle Indicator click
+  function handleIndicatorClick(_, index) {
+    // console.log("Go to:", index);
+    api.scrollTo(index);
+  }
+
+  // Handle content click
+  function handleContentClick(type, id) {
+    if (!hero) {
+      return;
+    }
+
+    navigate(`/category/${type}/${id}`);
+  }
 
   return (
     <Carousel
@@ -48,34 +59,44 @@ export default function ImageCarousel({ imageUrls, address, price, hero }) {
       //   ]}
     >
       <CarouselContent>
-        {imageUrls.map((url, index) => (
+        {slideDataArray.map((data, index) => (
           <CarouselItem key={index}>
             <div className="">
               <Card className="overflow-hidden">
                 <CardContent
                   className={`h-[30vw] flex items-center justify-center p-0 relative ${
                     hero
-                      ? "before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30"
+                      ? "before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 cursor-pointer"
                       : ""
                   }`}
+                  onClick={() => handleContentClick(data.type, data.id)}
                 >
-                  <AspectRatio ratio={16 / 9}>
-                    <img
-                      src={url || DummyHome}
-                      alt="Dummy Home"
-                      className="w-full object-cover"
-                    />
-                    {hero ? (
-                      <div className="absolute bottom-10 left-10 space-y-2">
-                        <h1 className="text-4xl text-white">{address}</h1>
+                  <img
+                    src={hero ? data.imageUrl || DummyHome : data || DummyHome}
+                    alt="Dummy Home"
+                    className="w-full object-cover"
+                  />
+                  {hero ? (
+                    <div className="absolute bottom-10 left-10 space-y-2">
+                      <h1 className="text-4xl text-white">{data.address}</h1>
+                      <div className="space-x-4">
+                        <Badge
+                          className={"text-xl rounded-full px-6 capitalize"}
+                          variant={"success"}
+                        >
+                          {data.type}
+                        </Badge>
                         <Badge className={"text-xl rounded-full px-6"}>
-                          {price}
+                          {data.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}
                         </Badge>
                       </div>
-                    ) : (
-                      ""
-                    )}
-                  </AspectRatio>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -113,8 +134,6 @@ export default function ImageCarousel({ imageUrls, address, price, hero }) {
 }
 
 ImageCarousel.defaultProps = {
-  imageUrls: [DummyHome, DummyHome, DummyHome, DummyHome, DummyHome],
-  address: "",
-  price: "",
+  slideDataArray: [DummyHome, DummyHome, DummyHome, DummyHome, DummyHome],
   hero: false,
 };

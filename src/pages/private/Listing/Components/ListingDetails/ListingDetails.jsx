@@ -59,49 +59,59 @@ export default function ListingDetails({ listingData }) {
         </span>
       </div>
 
-      <div className="flex items-center gap-4 empty:hidden  ">
+      <div className="flex items-stretch">
         {/* Furnitured */}
         {listingData.furnitured ? (
-          <Badge
-            className={
-              "px-4 py-2 rounded-full text-base font-medium capitalize"
-            }
-            variant={"warning"}
-          >
-            {"Furnitured"}
-          </Badge>
+          <div className="border p-10 grid place-items-center gap-2 min-w-48">
+            <Badge
+              className={
+                "px-4 py-2 rounded-full text-base font-medium capitalize shadow-lg"
+              }
+              variant={"warning"}
+            >
+              {"Furnitured"}
+            </Badge>{" "}
+          </div>
         ) : (
           ""
         )}
         {/* Parking */}
         {listingData.parking ? (
-          <Badge
-            className={
-              "px-4 py-2 rounded-full text-base font-medium capitalize"
-            }
-            variant={"warning"}
-          >
-            {"Parking Spot"}
-          </Badge>
+          <div className="border p-10 grid place-items-center gap-2 min-w-48">
+            <Badge
+              className={
+                "px-4 py-2 rounded-full text-base font-medium capitalize shadow-lg"
+              }
+              variant={"warning"}
+            >
+              {"Parking Spot"}
+            </Badge>
+          </div>
         ) : (
           ""
         )}
-      </div>
-
-      {/* Beds and Baths */}
-      <div className="flex items-center gap-4 text-lg">
-        <span className="flex items-center">
-          <IoBed className="inline mr-2" />{" "}
-          {listingData.bedrooms > 1
-            ? `${listingData.bedrooms} Bedrooms`
-            : "1 Bedroom"}
-        </span>
-        <span className="flex items-center">
-          <FaBath className="inline mr-2" />{" "}
-          {listingData.bathrooms > 1
-            ? `${listingData.bathrooms} Bathrooms`
-            : "1 Bathroom"}
-        </span>
+        {/* Bedrooms */}
+        <div className="border p-10 grid place-items-center gap-2 min-w-48">
+          <span className="p-4 bg-accent rounded-full shadow-lg hover:text-sky-700">
+            <IoBed className="text-2xl" />
+          </span>
+          <p>
+            {listingData.bedrooms > 1
+              ? `${listingData.bedrooms} Bedrooms`
+              : "1 Bedroom"}
+          </p>
+        </div>
+        {/* Bathrooms */}
+        <div className="border p-10 grid place-items-center gap-2 min-w-48">
+          <span className="p-4 bg-accent rounded-full shadow-lg hover:text-sky-700">
+            <FaBath className="text-2xl" />
+          </span>
+          <p>
+            {listingData.bathrooms > 1
+              ? `${listingData.bathrooms} Bathrooms`
+              : "1 Bathroom"}
+          </p>
+        </div>
       </div>
     </>
   );
