@@ -1,9 +1,9 @@
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import { FaCircleUser, FaHouseFlag } from "react-icons/fa6";
-import { MdMenu } from "react-icons/md";
+// import { MdMenu } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
-const NAVINKS = [
+const NAVLINKS = [
   {
     label: "Home",
     link: "/",
@@ -22,7 +22,7 @@ export default function Navbar() {
   const { user, loggedIn } = useAuthStatus();
 
   return (
-    <div className="bg-gradient-to-b from-secondary/20 to-secondary border-b backdrop-blur supports-backdrop-blur:bg-white/95 sticky top-0 z-40">
+    <div className="hidden lg:block bg-gradient-to-b from-secondary/20 to-secondary border-b backdrop-blur supports-backdrop-blur:bg-white/95 sticky top-0 z-40">
       <nav
         className="mx-auto 2xl:max-w-[80dvw] flex items-center justify-between p-3 lg:px-8"
         aria-label="Global"
@@ -37,20 +37,20 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu trigger */}
-        <div className="flex lg:hidden">
+        {/* <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            // onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <MdMenu />
           </button>
-        </div>
+        </div> */}
 
         {/* Menu */}
         <div className="flex items-center gap-2">
-          {NAVINKS.map(({ label, link }, index) => {
+          {NAVLINKS.map(({ label, link }, index) => {
             return (
               <NavLink
                 to={link}

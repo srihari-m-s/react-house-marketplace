@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import Spinner from "@/components/shared/Spinner/Spinner";
+import MobileNav from "../MobileNav/MobileNav";
 
 export default function RootLayout() {
   const { loggedIn, checkingStatus } = useAuthStatus();
@@ -18,10 +19,13 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <main className="container mx-auto pb-8 min-h-[calc(100dvh-70px-289px)]">
+      <main className="container mx-auto px-2 md:px-8 pb-8 min-h-[calc(100dvh-70px-289px)]">
         <Outlet />
       </main>
-      <Footer />
+      <div className="">
+        <Footer />
+      </div>
+      <MobileNav />
     </>
   );
 }

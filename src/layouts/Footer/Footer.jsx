@@ -29,8 +29,8 @@ export default function Footer() {
           </span>
 
           {/* Policies */}
-          <div className="grid grid-cols-3 place-items-center text-accent">
-            <div className="text-left">
+          <div className="grid grid-cols-3 gap-4 place-items-center text-accent">
+            <div className="text-left col-span-3 md:col-span-1 ">
               <h4 className="font-bold text-lg">Lorem, ipsum.</h4>
               <p className="">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro

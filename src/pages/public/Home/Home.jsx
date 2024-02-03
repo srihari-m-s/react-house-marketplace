@@ -3,6 +3,7 @@ import SaleSlider from "@/components/homePage/SaleSlider/SaleSlider";
 import Footer from "@/layouts/Footer/Footer";
 import Navbar from "@/layouts/Navbar/Navbar";
 import HeroSlider from "./Components/HeroSlider/HeroSlider";
+import MobileNav from "@/layouts/MobileNav/MobileNav";
 
 export default function Home() {
   return (
@@ -33,6 +34,8 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+      {/* Mobile Navbar */}
+      <MobileNav />
     </div>
   );
 }
