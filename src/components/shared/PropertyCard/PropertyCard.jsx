@@ -7,7 +7,7 @@ import {
   FaRegHeart,
   FaBath,
 } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoBed } from "react-icons/io5";
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import DeleteListing from "./DeleteListing";
@@ -20,6 +20,7 @@ export default function PropertyCard({
   handleDelete,
 }) {
   const { user } = useAuthStatus();
+  const { pathname } = useLocation();
 
   return (
     <Card className="w-72 sm:w-[315px] bg-accent/60 property-card">
@@ -106,7 +107,7 @@ export default function PropertyCard({
 
             {/* Show Edit if listin belongs to LoggedInUser */}
             <div className="grid grid-cols-2">
-              {user.uid === listingData.userRef ? (
+              {user.uid === listingData.userRef && pathname === "/profile" ? (
                 <>
                   <Link to={`/edit-listing/${listingId}`}>
                     <Button className="text-base w-full" variant="info">

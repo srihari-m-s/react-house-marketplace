@@ -2,7 +2,7 @@ import UploadFeedback from "@/components/createListingPage/UploadFeedback/Upload
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { db } from "@/firbase.config";
-import { storeImage } from "@/helpers/FireStorage";
+import { deleteFileByDownloadUrl, storeImage } from "@/helpers/FireStorage";
 import { editListingSchema } from "@/helpers/FormSchemas";
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import BedsAndBathsInput from "@/pages/private/CreateListing/Components/BedsAndBathsInput/BedsAndBathsInput";
@@ -114,6 +114,19 @@ export default function EditListingForm({ listingData, listingId }) {
         toast.error("Upload of images failed. Please try again.");
         return;
       });
+
+      // Delete old files from storage
+      await Promise.all(
+        [...listingData.imageUrls].map((imageUrl) =>
+          deleteFileByDownloadUrl(imageUrl)
+        )
+      )
+        .then(() => {
+          console.log("Deleted old images");
+        })
+        .catch(() => {
+          console.log("Error deleting old images");
+        });
     } else {
       uploadedImageUrls = formData.imageUrls;
       setProgress(0.5);

@@ -78,7 +78,9 @@ export default function ImageCarousel({ slideDataArray, hero }) {
                   />
                   {hero ? (
                     <div className="absolute bottom-10 left-10 space-y-2">
-                      <h1 className="text-4xl text-white">{data.address}</h1>
+                      <h1 className="text-4xl text-white bg-gray-800 p-2 rounded">
+                        {data.address}
+                      </h1>
                       <div className="space-x-4">
                         <Badge
                           className={"text-xl rounded-full px-6 capitalize"}

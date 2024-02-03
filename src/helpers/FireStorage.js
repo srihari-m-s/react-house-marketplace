@@ -3,6 +3,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  deleteObject,
 } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
@@ -49,5 +50,26 @@ export async function storeImage(image, onSuccess) {
         });
       }
     );
+  });
+}
+
+// Delete old image files
+export async function deleteFileByDownloadUrl(downloadUrl) {
+  return new Promise((resolve, reject) => {
+    const storage = getStorage();
+
+    // Convert download URL to storage reference
+    const storageRef = ref(storage, downloadUrl);
+
+    // Delete the file
+    deleteObject(storageRef)
+      .then(() => {
+        // console.log('File deleted successfully.');
+        resolve("File deleted successfully.");
+      })
+      .catch((error) => {
+        // console.error('Error deleting file:', error.message);
+        reject(`Error deleting file: ${error.message}`);
+      });
   });
 }
