@@ -30,12 +30,12 @@ export default function Listing() {
       </div>
 
       {/* Listing details */}
-      <div className="space-y-4 max-w-2xl">
+      <div className="space-y-4 max-w-2xl px-2">
         <ListingDetails listingData={listingData} />
       </div>
 
       {/* Listing Location */}
-      <div className="space-y-4">
+      <div className="space-y-4 px-2">
         <h2 className="text-2xl font-bold">Location</h2>
         {/* Maps */}
         <LocationLeaflet
@@ -45,7 +45,7 @@ export default function Listing() {
       </div>
 
       {/* Contact Landlord */}
-      <div className={`empty:hidden`}>
+      <div className={`empty:hidden px-2`}>
         {user?.uid !== listingData.userRef ? (
           <ContactListingOwner
             name={listingData.name}

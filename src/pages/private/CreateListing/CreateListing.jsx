@@ -3,7 +3,7 @@ import "./CreateListing.css";
 
 export default function CreateListing() {
   return (
-    <div className="createListing-form py-6">
+    <div className="createListing-form py-6 px-2">
       <h1 className="text-3xl">Create your Listing</h1>
       <hr className="mb-6 mt-2" />
 

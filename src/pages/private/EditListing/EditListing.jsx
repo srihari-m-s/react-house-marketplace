@@ -8,7 +8,7 @@ export default function EditListing() {
   const { listingData, loading, error } = useFetchSingleListing(listingId);
 
   return (
-    <div className="createListing-form py-6">
+    <div className="createListing-form py-6 px-2">
       <h1 className="text-3xl">Edit Listing</h1>
       <hr className="mb-6 mt-2" />
 

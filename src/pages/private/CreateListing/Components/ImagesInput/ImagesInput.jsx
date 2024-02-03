@@ -32,9 +32,13 @@ export default function ImagesInput({ form, existingImages }) {
             <FormDescription>
               Upload at most 6 image files of the property.
             </FormDescription>
-            <FormDescription className="font-bold text-base">
-              Note: Uploading new images will replace all current images.
-            </FormDescription>
+            {existingImages ? (
+              <FormDescription className="font-bold text-base">
+                Note: Uploading new images will replace all current images.
+              </FormDescription>
+            ) : (
+              ""
+            )}
             <FormMessage />
             <FormControl>
               <input

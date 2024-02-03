@@ -16,7 +16,7 @@ export default function Categories() {
   }
 
   return (
-    <div className="py-6 space-y-6">
+    <div className="py-6 space-y-6 px-2">
       {/* Heading */}
       <h1 className="text-3xl font-bold capitalize ">{categoryName}</h1>
 

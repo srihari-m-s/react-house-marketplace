@@ -22,7 +22,7 @@ const MOBILE_NAVLINKS = [
 
 export default function MobileNav() {
   return (
-    <nav className="flex items-center justify-center py-2 sticky bottom-0 left-0 right-0 bg-white border-t shadow-[0_-5px_5px_-5px_rgba(0,0,0,0.3)] lg:hidden">
+    <nav className="flex items-center justify-center py-2 z-[400] sticky bottom-0 left-0 right-0 bg-white border-t shadow-[0_-5px_5px_-5px_rgba(0,0,0,0.3)] lg:hidden">
       <div className="flex items-center gap-2">
         {MOBILE_NAVLINKS.map(({ label, link, icon }, index) => {
           return (

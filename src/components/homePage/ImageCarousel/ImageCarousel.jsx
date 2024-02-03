@@ -62,9 +62,9 @@ export default function ImageCarousel({ slideDataArray, hero }) {
         {slideDataArray.map((data, index) => (
           <CarouselItem key={index}>
             <div className="">
-              <Card className="overflow-hidden">
+              <Card className="overflow-hidden rounded-none border-0 lg:rounded-xl">
                 <CardContent
-                  className={`h-[30vw] flex items-center justify-center p-0 relative ${
+                  className={`h-[400px] md:h-[500px] xl:h-[600px] flex items-center justify-center p-0 relative ${
                     hero
                       ? "before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 cursor-pointer"
                       : ""
@@ -74,21 +74,25 @@ export default function ImageCarousel({ slideDataArray, hero }) {
                   <img
                     src={hero ? data.imageUrl || DummyHome : data || DummyHome}
                     alt="Dummy Home"
-                    className="w-full object-cover"
+                    className="w-full h-full object-cover"
                   />
                   {hero ? (
-                    <div className="absolute bottom-10 left-10 space-y-2">
-                      <h1 className="text-4xl text-white bg-gray-800 p-2 rounded">
+                    <div className="absolute bottom-16 lg:bottom-10 left-0 lg:left-10 space-y-2">
+                      <h1 className="md:text-2xl lg:text-4xl text-white bg-gray-800 p-2 rounded">
                         {data.address}
                       </h1>
                       <div className="space-x-4">
                         <Badge
-                          className={"text-xl rounded-full px-6 capitalize"}
+                          className={
+                            "text-base lg:text-xl rounded-full px-6 capitalize"
+                          }
                           variant={"success"}
                         >
                           {data.type}
                         </Badge>
-                        <Badge className={"text-xl rounded-full px-6"}>
+                        <Badge
+                          className={"text-base lg:text-xl rounded-full px-6"}
+                        >
                           {data.price.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",

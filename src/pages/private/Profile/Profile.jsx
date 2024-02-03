@@ -18,7 +18,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="py-8 space-y-6">
+    <div className="py-8 space-y-6 px-2">
       {/* Heading */}
       <div className="">
         <h1 className="text-3xl">Profile</h1>

@@ -14,7 +14,7 @@ export default function SaleSlider() {
     <div className="space-y-4">
       <span className="flex justify-between">
         <h2 className="text-2xl text-primary font-semibold">
-          Properties for Sale
+          <span className="hidden md:inline">Properties for</span> Sale
         </h2>
         <Link
           to={"/category/sale"}

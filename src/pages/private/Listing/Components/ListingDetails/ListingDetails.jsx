@@ -59,7 +59,7 @@ export default function ListingDetails({ listingData }) {
         </span>
       </div>
 
-      <div className="flex items-stretch">
+      <div className="flex flex-col md:flex-row items-stretch">
         {/* Furnitured */}
         {listingData.furnitured ? (
           <div className="border p-10 grid place-items-center gap-2 min-w-48">
