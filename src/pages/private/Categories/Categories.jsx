@@ -1,12 +1,19 @@
 import PropertiesList from "@/components/shared/PropertiesList/PropertiesList";
 
 import Spinner from "@/components/shared/Spinner/Spinner";
+import { Button } from "@/components/ui/button";
 import useFetchListings from "@/hooks/useFetchListings/useFetchListings";
 import { useParams } from "react-router-dom";
 
 export default function Categories() {
   const { categoryName } = useParams();
-  const { listings, loading } = useFetchListings("type", categoryName);
+  const { listings, loading, lastFetchedListing, handleFetchNextListings } =
+    useFetchListings("type", categoryName);
+
+  // Handle Load more click
+  function handleLoadMoreClick() {
+    handleFetchNextListings();
+  }
 
   return (
     <div className="py-6 space-y-6">
@@ -20,6 +27,16 @@ export default function Categories() {
           <PropertiesList listings={listings} categoryName={categoryName} />
         )}
       </div>
+
+      {lastFetchedListing ? (
+        <div className="text-center">
+          <Button className="text-base" onClick={handleLoadMoreClick}>
+            Load More
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
