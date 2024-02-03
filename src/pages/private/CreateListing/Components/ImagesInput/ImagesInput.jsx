@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { FaUpload } from "react-icons/fa6";
 
-export default function ImagesInput({ form }) {
+export default function ImagesInput({ form, existingImages }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   function handleImagesInput(e) {
@@ -30,7 +30,10 @@ export default function ImagesInput({ form }) {
               Pictures <FaUpload className="text-xl" />
             </FormLabel>
             <FormDescription>
-              Please upload at most 6 image files of the property.
+              Upload at most 6 image files of the property.
+            </FormDescription>
+            <FormDescription className="font-bold text-base">
+              Note: Uploading new images will replace all current images.
             </FormDescription>
             <FormMessage />
             <FormControl>
@@ -51,6 +54,7 @@ export default function ImagesInput({ form }) {
         )}
       />
 
+      {/* New Files */}
       {selectedFiles.length ? (
         <Card>
           <CardHeader>Uploaded files</CardHeader>
@@ -73,6 +77,33 @@ export default function ImagesInput({ form }) {
       ) : (
         ""
       )}
+
+      {/* Existing Files */}
+      {!selectedFiles.length && existingImages ? (
+        <Card>
+          <CardHeader>Current Images</CardHeader>
+          <CardContent>
+            <div className="inline-flex flex-wrap gap-4">
+              {existingImages.map((url, index) => {
+                return (
+                  <img
+                    src={url}
+                    alt={"Property"}
+                    key={`${url}-${index}`}
+                    className="rounded-xl h-48 w-48 object-cover border shadow-md"
+                  />
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
+
+ImagesInput.defaultProps = {
+  existingImages: null,
+};
