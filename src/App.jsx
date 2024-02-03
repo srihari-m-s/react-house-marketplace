@@ -12,6 +12,7 @@ import Listing from "./pages/private/Listing/Listing";
 import Profile from "./pages/private/Profile/Profile";
 import Categories from "./pages/private/Categories/Categories";
 import CreateListing from "./pages/private/CreateListing/CreateListing";
+import EditListing from "./pages/private/EditListing/EditListing";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           />
           <Route path="profile" element={<Profile />} />
           <Route path="create-listing" element={<CreateListing />} />
+          <Route path="edit-listing/:listingId" element={<EditListing />} />
         </Route>
       </Routes>
 

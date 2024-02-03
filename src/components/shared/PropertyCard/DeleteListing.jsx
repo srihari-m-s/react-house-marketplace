@@ -25,7 +25,7 @@ export default function DeleteListing({
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="destructive" className="w-full text-base">
-            Delete Listing
+            Delete
           </Button>
         </DialogTrigger>
         <DialogContent>

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { IoBed } from "react-icons/io5";
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import DeleteListing from "./DeleteListing";
+import { Button } from "@/components/ui/button";
 
 export default function PropertyCard({
   categoryName,
@@ -103,16 +104,30 @@ export default function PropertyCard({
               </Badge>
             </div>
 
-            {/* Show Delete if listing belongs LoggedIn user */}
-            {user.uid === listingData.userRef && handleDelete ? (
-              <DeleteListing
-                listingData={listingData}
-                listingId={listingId}
-                handleDelete={handleDelete}
-              />
-            ) : (
-              ""
-            )}
+            {/* Show Edit if listin belongs to LoggedInUser */}
+            <div className="grid grid-cols-2">
+              {user.uid === listingData.userRef ? (
+                <>
+                  <Link to={`/edit-listing/${listingId}`}>
+                    <Button className="text-base w-full" variant="info">
+                      Edit
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                ""
+              )}
+              {/* Show Delete if listing belongs LoggedIn user */}
+              {user.uid === listingData.userRef && handleDelete ? (
+                <DeleteListing
+                  listingData={listingData}
+                  listingId={listingId}
+                  handleDelete={handleDelete}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
       </CardContent>
