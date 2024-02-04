@@ -5,6 +5,7 @@ import Navbar from "@/layouts/Navbar/Navbar";
 import HeroSlider from "./Components/HeroSlider/HeroSlider";
 import MobileNav from "@/layouts/MobileNav/MobileNav";
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
+import Disclaimer from "@/components/homePage/Disclaimer/Disclaimer";
 
 export default function Home() {
   useDocumentTitle("Home");
@@ -38,6 +39,8 @@ export default function Home() {
       <Footer />
       {/* Mobile Navbar */}
       <MobileNav />
+      {/* Disclaimer */}
+      <Disclaimer />
     </div>
   );
 }

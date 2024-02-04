@@ -30,7 +30,8 @@ export default function ImagesInput({ form, existingImages }) {
               Pictures <FaUpload className="text-xl" />
             </FormLabel>
             <FormDescription>
-              Upload at most 6 image files of the property.
+              Upload at most 6 image files of the property. Please make sure
+              each image is less than 2MB.
             </FormDescription>
             {existingImages ? (
               <FormDescription className="font-bold text-base">
