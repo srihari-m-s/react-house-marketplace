@@ -1,5 +1,5 @@
 import { DummyHome } from "@/assets/dummy";
-import { Badge } from "@/components/ui/badge";
+// import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   FaHouseChimney,
@@ -54,6 +54,9 @@ export default function PropertyCard({
             {/* Price and Address */}
             <Link to={`/category/${categoryName}/${listingId}`}>
               <div className="grid">
+                <p className="text-xl font-bold text-amber-700">
+                  {listingData.name}
+                </p>
                 <p className="text-xl text-blue-800 font-bold">
                   {listingData.offer ? (
                     <>
@@ -102,9 +105,9 @@ export default function PropertyCard({
                 Location
               </span>
 
-              <Badge variant={"warning"} className={"rounded-full"}>
+              {/* <Badge variant={"warning"} className={"rounded-full"}>
                 Featured
-              </Badge>
+              </Badge> */}
             </div>
 
             {/* Show Edit if listin belongs to LoggedInUser */}
