@@ -1,12 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+// import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import Spinner from "@/components/shared/Spinner/Spinner";
 import MobileNav from "../MobileNav/MobileNav";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 export default function RootLayout() {
-  const { loggedIn, checkingStatus } = useAuthStatus();
+  const { loggedIn, checkingStatus } = useContext(AuthContext);
 
   if (checkingStatus) {
     return <Spinner />;

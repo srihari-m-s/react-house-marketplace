@@ -24,13 +24,13 @@ export default function Categories() {
       {/* Heading */}
       <h1 className="text-3xl font-bold capitalize ">{categoryName}</h1>
 
-      <div className="inline-flex flex-wrap gap-4">
-        {loading ? (
-          <Spinner />
-        ) : (
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="inline-flex flex-wrap gap-4">
           <PropertiesList listings={listings} categoryName={categoryName} />
-        )}
-      </div>
+        </div>
+      )}
 
       {lastFetchedListing ? (
         <div className="text-center">

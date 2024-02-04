@@ -1,6 +1,5 @@
 import PageError from "@/components/shared/PageError/PageError";
 import PageSpinner from "@/components/shared/PageSpinner/PageSpinner";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import useFetchSingleListing from "@/hooks/useFetchSingleListing/useFetchSingleListing";
 import { useParams } from "react-router-dom";
 import ContactListingOwner from "./Components/ContactListingOwner/ContactListingOwner";
@@ -8,11 +7,13 @@ import ListingDetails from "./Components/ListingDetails/ListingDetails";
 import LocationLeaflet from "./Components/LocationLeaflet/LocationLeaflet";
 import ImageCarousel from "@/components/homePage/ImageCarousel/ImageCarousel";
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 export default function Listing() {
   useDocumentTitle("listing");
   const { listingId } = useParams();
-  const { user } = useAuthStatus();
+  const { user } = useContext(AuthContext);
 
   const { listingData, loading, error } = useFetchSingleListing(listingId);
 

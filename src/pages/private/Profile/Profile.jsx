@@ -3,15 +3,16 @@ import { Button } from "@/components/ui/button";
 import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import UsersListings from "@/components/profilePage/UsersListings/UsersListings";
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 export default function Profile() {
   useDocumentTitle("profile");
 
   const auth = getAuth();
-  const { user } = useAuthStatus();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   // Local states
 

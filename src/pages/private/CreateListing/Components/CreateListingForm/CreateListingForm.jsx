@@ -8,7 +8,7 @@ import ParkingAndFurnitureInput from "../ParkingAndFurnitureInput/ParkingAndFurn
 import BedsAndBathsInput from "../BedsAndBathsInput/BedsAndBathsInput";
 import ImagesInput from "../ImagesInput/ImagesInput";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import GeolocationInput from "../GeolocationInput/GeolocationInput";
 import toast from "react-hot-toast";
 import { storeImage } from "@/helpers/FireStorage";
@@ -18,13 +18,13 @@ import { db } from "@/firbase.config";
 import { useNavigate } from "react-router-dom";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { createListingSchema } from "@/helpers/FormSchemas";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 const MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function CreateListingForm() {
   const navigate = useNavigate();
-  const { user } = useAuthStatus();
+  const { user } = useContext(AuthContext);
   const form = useForm({
     resolver: zodResolver(createListingSchema),
     defaultValues: {

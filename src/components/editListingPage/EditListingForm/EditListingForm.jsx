@@ -1,10 +1,10 @@
 import UploadFeedback from "@/components/createListingPage/UploadFeedback/UploadFeedback";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 import { db } from "@/firbase.config";
 import { deleteFileByDownloadUrl, storeImage } from "@/helpers/FireStorage";
 import { editListingSchema } from "@/helpers/FormSchemas";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import BedsAndBathsInput from "@/pages/private/CreateListing/Components/BedsAndBathsInput/BedsAndBathsInput";
 import GeolocationInput from "@/pages/private/CreateListing/Components/GeolocationInput/GeolocationInput";
 import ImagesInput from "@/pages/private/CreateListing/Components/ImagesInput/ImagesInput";
@@ -14,7 +14,7 @@ import ParkingAndFurnitureInput from "@/pages/private/CreateListing/Components/P
 import TypeInput from "@/pages/private/CreateListing/Components/TypeInput/TypeInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
@@ -24,7 +24,7 @@ const MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function EditListingForm({ listingData, listingId }) {
   const navigate = useNavigate();
-  const { user } = useAuthStatus();
+  const { user } = useContext(AuthContext);
   const form = useForm({
     resolver: zodResolver(editListingSchema),
     defaultValues: {

@@ -9,9 +9,11 @@ import {
 } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { IoBed } from "react-icons/io5";
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+// import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import DeleteListing from "./DeleteListing";
 import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 export default function PropertyCard({
   categoryName,
@@ -19,7 +21,7 @@ export default function PropertyCard({
   listingId,
   handleDelete,
 }) {
-  const { user } = useAuthStatus();
+  const { user } = useContext(AuthContext);
   const { pathname } = useLocation();
 
   return (
@@ -107,7 +109,7 @@ export default function PropertyCard({
 
             {/* Show Edit if listin belongs to LoggedInUser */}
             <div className="grid grid-cols-2">
-              {user.uid === listingData.userRef && pathname === "/profile" ? (
+              {user?.uid === listingData.userRef && pathname === "/profile" ? (
                 <>
                   <Link to={`/edit-listing/${listingId}`}>
                     <Button className="text-base w-full" variant="info">
@@ -119,7 +121,7 @@ export default function PropertyCard({
                 ""
               )}
               {/* Show Delete if listing belongs LoggedIn user */}
-              {user.uid === listingData.userRef && handleDelete ? (
+              {user?.uid === listingData.userRef && handleDelete ? (
                 <DeleteListing
                   listingData={listingData}
                   listingId={listingId}

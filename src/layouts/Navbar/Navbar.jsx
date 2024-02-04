@@ -1,4 +1,6 @@
-import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
+// import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
+import { useContext } from "react";
 import { FaCircleUser, FaHouseFlag } from "react-icons/fa6";
 // import { MdMenu } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
@@ -19,7 +21,7 @@ const NAVLINKS = [
 ];
 
 export default function Navbar() {
-  const { user, loggedIn } = useAuthStatus();
+  const { user, loggedIn } = useContext(AuthContext);
 
   return (
     <div className="hidden lg:block bg-gradient-to-b from-secondary/20 to-secondary border-b backdrop-blur supports-backdrop-blur:bg-white/95 sticky top-0 z-40">
