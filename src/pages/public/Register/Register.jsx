@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import RegisterForm from "@/components/registerPage/RegisterForm";
 import { FaHouseChimney } from "react-icons/fa6";
 import OAuth from "@/components/shared/OAuth/OAuth";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 
 export default function Register() {
+  useDocumentTitle("Register");
+
   return (
     <div className="bg-sky-800/30">
       <div className="container mx-auto h-screen px-1 md:px-8">

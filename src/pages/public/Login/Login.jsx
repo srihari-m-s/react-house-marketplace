@@ -10,8 +10,11 @@ import { Link } from "react-router-dom";
 import { FaHouseChimney } from "react-icons/fa6";
 import ForgotPassword from "@/components/loginPage/ForgotPassword";
 import OAuth from "@/components/shared/OAuth/OAuth";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 
 export default function Login() {
+  useDocumentTitle("Login");
+
   return (
     <div className="bg-sky-800/30">
       <div className="container mx-auto h-screen px-1 md:px-8">

@@ -1,9 +1,11 @@
 import EditListingForm from "@/components/editListingPage/EditListingForm/EditListingForm";
 import Spinner from "@/components/shared/Spinner/Spinner";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import useFetchSingleListing from "@/hooks/useFetchSingleListing/useFetchSingleListing";
 import { useParams } from "react-router-dom";
 
 export default function EditListing() {
+  useDocumentTitle("Edit Listing");
   const { listingId } = useParams();
   const { listingData, loading, error } = useFetchSingleListing(listingId);
 

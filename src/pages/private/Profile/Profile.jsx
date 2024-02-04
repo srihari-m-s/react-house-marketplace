@@ -5,8 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
 import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
 import UsersListings from "@/components/profilePage/UsersListings/UsersListings";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 
 export default function Profile() {
+  useDocumentTitle("profile");
+
   const auth = getAuth();
   const { user } = useAuthStatus();
   const navigate = useNavigate();

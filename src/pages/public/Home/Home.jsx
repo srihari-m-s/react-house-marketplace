@@ -4,8 +4,11 @@ import Footer from "@/layouts/Footer/Footer";
 import Navbar from "@/layouts/Navbar/Navbar";
 import HeroSlider from "./Components/HeroSlider/HeroSlider";
 import MobileNav from "@/layouts/MobileNav/MobileNav";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 
 export default function Home() {
+  useDocumentTitle("Home");
+
   return (
     <div>
       <Navbar />

@@ -7,8 +7,10 @@ import ContactListingOwner from "./Components/ContactListingOwner/ContactListing
 import ListingDetails from "./Components/ListingDetails/ListingDetails";
 import LocationLeaflet from "./Components/LocationLeaflet/LocationLeaflet";
 import ImageCarousel from "@/components/homePage/ImageCarousel/ImageCarousel";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 
 export default function Listing() {
+  useDocumentTitle("listing");
   const { listingId } = useParams();
   const { user } = useAuthStatus();
 

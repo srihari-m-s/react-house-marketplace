@@ -1,9 +1,12 @@
 import PropertiesList from "@/components/shared/PropertiesList/PropertiesList";
 import Spinner from "@/components/shared/Spinner/Spinner";
 import { Button } from "@/components/ui/button";
+import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import useFetchListings from "@/hooks/useFetchListings/useFetchListings";
 
 export default function Offers() {
+  useDocumentTitle("Offers");
+
   const { listings, loading, lastFetchedListing, handleFetchNextListings } =
     useFetchListings("offer", true);
 
