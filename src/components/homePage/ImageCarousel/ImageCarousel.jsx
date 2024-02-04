@@ -62,9 +62,9 @@ export default function ImageCarousel({ slideDataArray, hero }) {
         {slideDataArray.map((data, index) => (
           <CarouselItem key={index}>
             <div className="">
-              <Card className="overflow-hidden rounded-none border-0 lg:rounded-xl">
+              <Card className="overflow-hidden rounded-none border-0">
                 <CardContent
-                  className={`h-[400px] md:h-[500px] xl:h-[600px] flex items-center justify-center p-0 relative ${
+                  className={`h-[400px] md:h-[500px] xl:h-[600px] 2xl:h-[700px] flex items-center justify-center p-0 relative ${
                     hero
                       ? "before:absolute before:inset-0 before:bg-neutral-900 before:bg-opacity-30 cursor-pointer"
                       : ""

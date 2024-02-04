@@ -15,14 +15,13 @@ export default function Home() {
 
       {/* Main */}
       <div className="">
-        <div className="container mx-auto px-0 lg:px-8 pb-8">
-          <div className="space-y-4 mx-auto">
-            {/* <h1 className="text-4xl font-bold ps-2 underline decoration-primary underline-offset-4">
+        <div className="space-y-4 mx-auto">
+          {/* <h1 className="text-4xl font-bold ps-2 underline decoration-primary underline-offset-4">
               Recommended
             </h1> */}
-            <HeroSlider />
-          </div>
-
+          <HeroSlider />
+        </div>
+        <div className="container mx-auto px-0 lg:px-8 pb-8">
           {/* Rents */}
           <div className="mt-10 px-2">
             <RentSlider />
