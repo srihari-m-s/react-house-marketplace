@@ -6,6 +6,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogOverlay,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
@@ -30,6 +31,7 @@ export default function Disclaimer() {
 
   return !seenDisclaimer ? (
     <AlertDialog open={open} onOpenChange={handleUnderstand}>
+      <AlertDialogOverlay className="bg-white bg-opacity-0 backdrop-blur supports-backdrop-blur:bg-white/95 " />
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-warning md:text-3xl">
