@@ -22,12 +22,14 @@ import { db } from "@/firbase.config";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { registerSchema } from "@/helpers/FormSchemas";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   // Local States
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // 1. Define your form.
   const form = useForm({
@@ -46,6 +48,7 @@ export default function RegisterForm() {
     const { email, password, fullname } = values;
 
     try {
+      setLoading(true);
       const auth = getAuth();
       // Create user in firebase authentication
       const userCredentials = await createUserWithEmailAndPassword(
@@ -69,9 +72,15 @@ export default function RegisterForm() {
 
       await setDoc(doc(db, "users", user.uid), userDetails);
 
-      navigate("/");
+      const TOAST_DURATION = 2000;
+      toast.success("Login Successful!", { duration: TOAST_DURATION });
+      setTimeout(() => {
+        navigate("/");
+      }, TOAST_DURATION);
     } catch (error) {
       toast.error("Registration unsuccessful. Please try again!");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -98,7 +107,7 @@ export default function RegisterForm() {
             <FormItem className="formItem">
               <FormLabel>Full name</FormLabel>
               <FormControl>
-                <Input placeholder="fullname" {...field} required />
+                <Input placeholder="full name" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -185,8 +194,15 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Submit
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? (
+            <>
+              <AiOutlineLoading3Quarters className="inline mr-2 h-4 w-4 animate-spin" />{" "}
+              {"Please wait"}
+            </>
+          ) : (
+            "Submit"
+          )}
         </Button>
       </form>
     </Form>

@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function useFetchListings(dataKey, param, itemLimit) {
+export default function useFetchListings(dataKey, param, itemLimit = 10) {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
@@ -98,7 +98,3 @@ export default function useFetchListings(dataKey, param, itemLimit) {
 
   return { listings, loading, lastFetchedListing, handleFetchNextListings };
 }
-
-useFetchListings.defaultProps = {
-  itemLimit: 10,
-};

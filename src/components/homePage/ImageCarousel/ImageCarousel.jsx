@@ -96,7 +96,8 @@ export default function ImageCarousel({ slideDataArray, hero }) {
                           {data.price.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",
-                          })}
+                          })}{" "}
+                          {data.type === "rent" ? " / month" : ""}
                         </Badge>
                       </div>
                     </div>

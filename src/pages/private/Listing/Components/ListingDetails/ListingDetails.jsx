@@ -62,7 +62,7 @@ export default function ListingDetails({ listingData }) {
       <div className="flex flex-col md:flex-row items-stretch">
         {/* Furnitured */}
         {listingData.furnitured ? (
-          <div className="border p-10 grid place-items-center gap-2 min-w-48">
+          <div className="border p-10 grid place-items-center gap-2 min-w-56">
             <Badge
               className={
                 "px-4 py-2 rounded-full text-base font-medium capitalize shadow-lg"
@@ -77,10 +77,10 @@ export default function ListingDetails({ listingData }) {
         )}
         {/* Parking */}
         {listingData.parking ? (
-          <div className="border p-10 grid place-items-center gap-2 min-w-48">
+          <div className="border p-10 grid place-items-center gap-2 min-w-56">
             <Badge
               className={
-                "px-4 py-2 rounded-full text-base font-medium capitalize shadow-lg"
+                "px-4 py-2 rounded-full text-base font-medium capitalize shadow-lg w-fit"
               }
               variant={"warning"}
             >
@@ -91,7 +91,7 @@ export default function ListingDetails({ listingData }) {
           ""
         )}
         {/* Bedrooms */}
-        <div className="border p-10 grid place-items-center gap-2 min-w-48">
+        <div className="border p-10 grid place-items-center gap-2 min-w-56">
           <span className="p-4 bg-accent rounded-full shadow-lg hover:text-sky-700">
             <IoBed className="text-2xl" />
           </span>
@@ -102,7 +102,7 @@ export default function ListingDetails({ listingData }) {
           </p>
         </div>
         {/* Bathrooms */}
-        <div className="border p-10 grid place-items-center gap-2 min-w-48">
+        <div className="border p-10 grid place-items-center gap-2 min-w-56">
           <span className="p-4 bg-accent rounded-full shadow-lg hover:text-sky-700">
             <FaBath className="text-2xl" />
           </span>

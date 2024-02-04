@@ -2,7 +2,7 @@ import { db } from "@/firbase.config";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-export default function useFetchSlides(itemLimit) {
+export default function useFetchSlides(itemLimit = 5) {
   const [slideListings, setSlideListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,7 +52,3 @@ export default function useFetchSlides(itemLimit) {
 
   return { slideListings, loading, error };
 }
-
-useFetchSlides.defaultProps = {
-  itemLimit: 5,
-};
