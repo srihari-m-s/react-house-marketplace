@@ -7,6 +7,7 @@ import UsersListings from "@/components/profilePage/UsersListings/UsersListings"
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
+import ShortlistedListings from "@/components/profilePage/ShortlistedListings/ShortlistedListings";
 
 export default function Profile() {
   useDocumentTitle("profile");
@@ -53,8 +54,11 @@ export default function Profile() {
         </Button>
       </div>
 
-      {/* LoggedIn User's listing */}
+      {/* LoggedIn User's listings */}
       {Object.keys(user).length ? <UsersListings user={user} /> : ""}
+
+      {/* User's shortlisted listings */}
+      {Object.keys(user).length ? <ShortlistedListings user={user} /> : ""}
     </div>
   );
 }
