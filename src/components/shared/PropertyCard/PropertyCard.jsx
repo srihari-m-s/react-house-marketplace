@@ -1,12 +1,7 @@
 import { DummyHome } from "@/assets/dummy";
 // import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  FaHouseChimney,
-  FaLocationDot,
-  FaRegHeart,
-  FaBath,
-} from "react-icons/fa6";
+import { FaHouseChimney, FaLocationDot, FaBath } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { IoBed } from "react-icons/io5";
 // import useAuthStatus from "@/hooks/useAuthStatus/useAuthStatus";
@@ -14,6 +9,7 @@ import DeleteListing from "./DeleteListing";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
+import Shortlist from "./Shortlist";
 
 export default function PropertyCard({
   categoryName,
@@ -46,9 +42,7 @@ export default function PropertyCard({
                 House
               </span>
 
-              <button className="w-8 h-8 rounded-full shadow-lg flex items-center justify-center bg-white">
-                <FaRegHeart className="text-xl" />
-              </button>
+              <Shortlist />
             </div>
 
             {/* Price and Address */}
