@@ -2,7 +2,7 @@ import RentSlider from "@/components/homePage/RentSlider/RentSlider";
 import SaleSlider from "@/components/homePage/SaleSlider/SaleSlider";
 import Footer from "@/layouts/Footer/Footer";
 import Navbar from "@/layouts/Navbar/Navbar";
-import HeroSlider from "./Components/HeroSlider/HeroSlider";
+import HeroSlider from "../../../components/homePage/HeroSlider/HeroSlider";
 import MobileNav from "@/layouts/MobileNav/MobileNav";
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import Disclaimer from "@/components/homePage/Disclaimer/Disclaimer";

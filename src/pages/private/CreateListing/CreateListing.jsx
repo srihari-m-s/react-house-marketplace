@@ -1,5 +1,5 @@
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
-import CreateListingForm from "./Components/CreateListingForm/CreateListingForm";
+import CreateListingForm from "@/components/createListingPage/CreateListingForm/CreateListingForm";
 import "./CreateListing.css";
 
 export default function CreateListing() {
