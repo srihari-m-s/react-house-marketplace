@@ -8,6 +8,7 @@ import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 import ShortlistedListings from "@/components/profilePage/ShortlistedListings/ShortlistedListings";
+import ScrollToTop from "@/components/shared/ScrollToTop/ScrollToTop";
 
 export default function Profile() {
   useDocumentTitle("profile");
@@ -23,42 +24,39 @@ export default function Profile() {
   }
 
   return (
-    <div className="py-8 space-y-6 px-2">
-      {/* Heading */}
-      <div className="">
-        <h1 className="text-3xl">Profile</h1>
-        <hr />
-      </div>
-
-      {/* Edit Displayname form */}
-      <div className="w-[30ch] my-6 space-y-6 mx-auto">
-        <NameForm />
-
-        {/* Create Listing */}
+    <ScrollToTop>
+      <div className="py-8 space-y-6 px-2">
+        {/* Heading */}
         <div className="">
-          <Link to={"/create-listing"} className="">
-            <Button className="w-full text-lg" variant="warning">
-              Create Your Listing
-            </Button>
-          </Link>
+          <h1 className="text-3xl">Profile</h1>
+          <hr />
         </div>
-
-        {/* Logout */}
-        <Button
-          type="button"
-          onClick={handleLogout}
-          className="w-full text-lg"
-          size="lg"
-        >
-          <LuLogOut className="inline mr-2 w-4 h-4" /> Logout
-        </Button>
+        {/* Edit Displayname form */}
+        <div className="w-[30ch] my-6 space-y-6 mx-auto">
+          <NameForm />
+          {/* Create Listing */}
+          <div className="">
+            <Link to={"/create-listing"} className="">
+              <Button className="w-full text-lg" variant="warning">
+                Create Your Listing
+              </Button>
+            </Link>
+          </div>
+          {/* Logout */}
+          <Button
+            type="button"
+            onClick={handleLogout}
+            className="w-full text-lg"
+            size="lg"
+          >
+            <LuLogOut className="inline mr-2 w-4 h-4" /> Logout
+          </Button>
+        </div>
+        {/* LoggedIn User's listings */}
+        {Object.keys(user).length ? <UsersListings user={user} /> : ""}
+        {/* User's shortlisted listings */}
+        {user.shortlisted?.length ? <ShortlistedListings user={user} /> : ""}
       </div>
-
-      {/* LoggedIn User's listings */}
-      {Object.keys(user).length ? <UsersListings user={user} /> : ""}
-
-      {/* User's shortlisted listings */}
-      {user.shortlisted?.length ? <ShortlistedListings user={user} /> : ""}
-    </div>
+    </ScrollToTop>
   );
 }

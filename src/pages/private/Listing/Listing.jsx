@@ -9,6 +9,7 @@ import ImageCarousel from "@/components/homePage/ImageCarousel/ImageCarousel";
 import useDocumentTitle from "@/hooks/useDocumentTitle/useDocumentTitle";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
+import ScrollToTop from "@/components/shared/ScrollToTop/ScrollToTop";
 
 export default function Listing() {
   useDocumentTitle("listing");
@@ -26,38 +27,37 @@ export default function Listing() {
   }
 
   return (
-    <main className="pb-6 space-y-6">
-      {/* Pictures slider */}
-      <div className="">
-        <ImageCarousel slideDataArray={listingData.imageUrls} hero={false} />
-      </div>
-
-      {/* Listing details */}
-      <div className="space-y-4 max-w-2xl px-2">
-        <ListingDetails listingData={listingData} />
-      </div>
-
-      {/* Listing Location */}
-      <div className="space-y-4 px-2">
-        <h2 className="text-2xl font-bold">Location</h2>
-        {/* Maps */}
-        <LocationLeaflet
-          position={Object.values(listingData.geolocation)}
-          location={listingData.location}
-        />
-      </div>
-
-      {/* Contact Landlord */}
-      <div className={`empty:hidden px-2`}>
-        {user?.id !== listingData.userRef ? (
-          <ContactListingOwner
-            name={listingData.name}
-            listingOwnerId={listingData.userRef}
+    <ScrollToTop>
+      <main className="pb-6 space-y-6">
+        {/* Pictures slider */}
+        <div className="">
+          <ImageCarousel slideDataArray={listingData.imageUrls} hero={false} />
+        </div>
+        {/* Listing details */}
+        <div className="space-y-4 max-w-2xl px-2">
+          <ListingDetails listingData={listingData} />
+        </div>
+        {/* Listing Location */}
+        <div className="space-y-4 px-2">
+          <h2 className="text-2xl font-bold">Location</h2>
+          {/* Maps */}
+          <LocationLeaflet
+            position={Object.values(listingData.geolocation)}
+            location={listingData.location}
           />
-        ) : (
-          ""
-        )}
-      </div>
-    </main>
+        </div>
+        {/* Contact Landlord */}
+        <div className={`empty:hidden px-2`}>
+          {user?.id !== listingData.userRef ? (
+            <ContactListingOwner
+              name={listingData.name}
+              listingOwnerId={listingData.userRef}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      </main>
+    </ScrollToTop>
   );
 }
