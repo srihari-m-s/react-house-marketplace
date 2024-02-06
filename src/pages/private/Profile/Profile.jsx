@@ -58,7 +58,7 @@ export default function Profile() {
       {Object.keys(user).length ? <UsersListings user={user} /> : ""}
 
       {/* User's shortlisted listings */}
-      {Object.keys(user).length ? <ShortlistedListings user={user} /> : ""}
+      {user.shortlisted?.length ? <ShortlistedListings user={user} /> : ""}
     </div>
   );
 }
