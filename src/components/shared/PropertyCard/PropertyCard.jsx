@@ -42,7 +42,7 @@ export default function PropertyCard({
                 House
               </span>
 
-              {loggedIn ? <Shortlist /> : ""}
+              {loggedIn ? <Shortlist listingId={listingId} /> : ""}
             </div>
 
             {/* Price and Address */}

@@ -4,7 +4,7 @@ import { createContext } from "react";
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  const { loggedIn, user, checkingStatus } = useAuthStatus();
+  const { loggedIn, user, checkingStatus, fetchUserData } = useAuthStatus();
 
   return (
     <AuthContext.Provider
@@ -12,6 +12,7 @@ export default function AuthProvider({ children }) {
         loggedIn,
         user,
         checkingStatus,
+        fetchUserData,
       }}
     >
       {children}

@@ -6,10 +6,13 @@ import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
 export default function Shortlist({ listingId }) {
-  const { user } = useContext(AuthContext);
+  const { user, fetchUserData } = useContext(AuthContext);
 
   //   Local States
-  const [shortlisted, setShortlisted] = useState(false);
+  const [shortlisted, setShortlisted] = useState(() => {
+    const index = user.shortlisted.indexOf(listingId);
+    return index === -1 ? false : true;
+  });
   const [loading, setLoading] = useState(false);
 
   // Handle Add to short list click
@@ -21,6 +24,7 @@ export default function Shortlist({ listingId }) {
       await updateDoc(userDocRef, {
         shortlisted: arrayUnion(listingId),
       });
+      fetchUserData(user.id);
     } catch (error) {
       toast.error("Error Adding to shortlist. Please try again.");
       setShortlisted((prev) => !prev);
@@ -38,6 +42,7 @@ export default function Shortlist({ listingId }) {
       await updateDoc(userDocRef, {
         shortlisted: arrayRemove(listingId),
       });
+      fetchUserData(user.id);
     } catch (error) {
       toast.error("Error Removing from shortlist. Please try again.");
       setShortlisted((prev) => !prev);
@@ -51,7 +56,7 @@ export default function Shortlist({ listingId }) {
       {shortlisted ? (
         <button
           className="w-8 h-8 rounded-full shadow-lg flex items-center justify-center bg-white"
-          onClick={handleAddToShortlist}
+          onClick={handleRemoveFromShortlist}
           disabled={loading}
         >
           <IconHeart className={`text-xl text-red-600`} />
@@ -59,7 +64,7 @@ export default function Shortlist({ listingId }) {
       ) : (
         <button
           className="w-8 h-8 rounded-full shadow-lg flex items-center justify-center bg-white"
-          onClick={handleRemoveFromShortlist}
+          onClick={handleAddToShortlist}
           disabled={loading}
         >
           <IconHeart className={`text-xl text-white`} />

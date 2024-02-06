@@ -40,5 +40,20 @@ export default function useAuthStatus() {
     };
   }, [isMounted]);
 
-  return { loggedIn, checkingStatus, user };
+  async function fetchUserData(userId) {
+    try {
+      const userDocRef = doc(db, "users", userId);
+      const docSnap = await getDoc(userDocRef);
+
+      if (docSnap.exists()) {
+        setUser({ id: userId, ...docSnap.data() });
+      } else {
+        setUser({});
+      }
+    } catch (error) {
+      console.error("Error fetching user details", error);
+    }
+  }
+
+  return { loggedIn, checkingStatus, user, fetchUserData };
 }
