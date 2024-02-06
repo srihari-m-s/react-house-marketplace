@@ -78,7 +78,7 @@ export default function Navbar() {
             className="text-lg font-semibold leading-6 text-gray-900 py-2 px-4 rounded-full hover:bg-sky-700 hover:text-white flex items-center"
           >
             <FaCircleUser className="text-3xl inline mr-2" />{" "}
-            {loggedIn ? user.displayName : "Log in"}
+            {loggedIn ? user.fullname : "Log in"}
           </Link>
         </div>
       </nav>

@@ -141,7 +141,7 @@ export default function EditListingForm({ listingData, listingId }) {
     // Add geolocation
     formData.geolocation = geolocation;
     // Add userRef
-    formData.userRef = user.uid;
+    formData.userRef = user.id;
     // Add timestamp
     formData.timestamp = serverTimestamp();
     !formData.offer && delete formData.discountedPrice;

@@ -17,7 +17,7 @@ export default function Shortlist({ listingId }) {
     setShortlisted((prev) => !prev);
     setLoading(true);
     try {
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, "users", user.id);
       await updateDoc(userDocRef, {
         shortlisted: arrayUnion(listingId),
       });
@@ -34,7 +34,7 @@ export default function Shortlist({ listingId }) {
     setShortlisted((prev) => !prev);
     setLoading(true);
     try {
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, "users", user.id);
       await updateDoc(userDocRef, {
         shortlisted: arrayRemove(listingId),
       });

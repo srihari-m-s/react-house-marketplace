@@ -26,6 +26,7 @@ export default function OAuth() {
           fullname: user.displayName,
           email: user.email,
           createdAt: serverTimestamp(),
+          shortlisted: [],
         });
       }
       navigate("/");

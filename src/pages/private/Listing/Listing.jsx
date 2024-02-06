@@ -49,7 +49,7 @@ export default function Listing() {
 
       {/* Contact Landlord */}
       <div className={`empty:hidden px-2`}>
-        {user?.uid !== listingData.userRef ? (
+        {user?.id !== listingData.userRef ? (
           <ContactListingOwner
             name={listingData.name}
             listingOwnerId={listingData.userRef}

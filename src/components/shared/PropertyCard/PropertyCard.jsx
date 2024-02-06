@@ -106,7 +106,7 @@ export default function PropertyCard({
 
             {/* Show Edit if listin belongs to LoggedInUser */}
             <div className="grid grid-cols-2">
-              {user?.uid === listingData.userRef && pathname === "/profile" ? (
+              {user?.id === listingData.userRef && pathname === "/profile" ? (
                 <>
                   <Link to={`/edit-listing/${listingId}`}>
                     <Button className="text-base w-full" variant="info">
@@ -118,7 +118,7 @@ export default function PropertyCard({
                 ""
               )}
               {/* Show Delete if listing belongs LoggedIn user */}
-              {user?.uid === listingData.userRef && handleDelete ? (
+              {user?.id === listingData.userRef && handleDelete ? (
                 <DeleteListing
                   listingData={listingData}
                   listingId={listingId}

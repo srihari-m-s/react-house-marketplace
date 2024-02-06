@@ -120,7 +120,7 @@ export default function CreateListingForm() {
     // Add geolocation
     formData.geolocation = geolocation;
     // Add userRef
-    formData.userRef = user.uid;
+    formData.userRef = user.id;
     // Add timestamp
     formData.timestamp = serverTimestamp();
     !formData.offer && delete formData.discountedPrice;

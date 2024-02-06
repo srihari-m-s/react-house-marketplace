@@ -1,4 +1,6 @@
+import { db } from "@/firbase.config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 
 export default function useAuthStatus() {
@@ -13,7 +15,18 @@ export default function useAuthStatus() {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setLoggedIn(true);
-          setUser(user);
+
+          // Get user data
+          const userDocRef = doc(db, "users", user.uid);
+          getDoc(userDocRef)
+            .then((docSnap) => {
+              if (docSnap.exists()) {
+                setUser({ id: user.uid, ...docSnap.data() });
+              } else {
+                setUser({});
+              }
+            })
+            .catch(() => setUser({}));
         } else {
           setLoggedIn(false);
           setUser({});

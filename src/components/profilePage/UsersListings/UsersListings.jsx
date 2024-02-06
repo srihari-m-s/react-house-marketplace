@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function UsersListings({ user }) {
   const { userListings, loading, error, handleDelete } = useFetchUserListings(
-    user.uid
+    user.id
   );
 
   if (loading) {
