@@ -31,24 +31,23 @@ export default function Footer() {
           {/* Policies */}
           <div className="grid grid-cols-3 gap-4 place-items-center text-accent">
             <div className="text-left col-span-3 md:col-span-1 ">
-              <h4 className="font-bold text-lg">Lorem, ipsum.</h4>
+              <h4 className="font-bold text-lg">House Marketplace</h4>
               <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                rerum incidunt accusamus ipsam optio velit? Aliquam sint aperiam
-                suscipit ipsa.
+                Look no further to rent out or sell your property, for we have
+                the best platform and people to help you to your goals.
               </p>
             </div>
             <div className="text-left">
-              <h4 className="font-bold text-lg">Lorem, ipsum.</h4>
-              <p className="">lorem</p>
-              <p className="">lorem</p>
-              <p className="">lorem</p>
+              <h4 className="font-bold text-lg">Our Services</h4>
+              <p className="">Post your Property</p>
+              <p className="">Real Estate Investments</p>
+              <p className="">Customer Service</p>
             </div>
             <div className="text-left">
-              <h4 className="font-bold text-lg">Lorem, ipsum.</h4>
-              <p className="">lorem</p>
-              <p className="">lorem</p>
-              <p className="">lorem</p>
+              <h4 className="font-bold text-lg">Company</h4>
+              <p className="">Contact Us</p>
+              <p className="">Feedback</p>
+              <p className="">Privacy Policy</p>
             </div>
           </div>
           <h3 className="text-lg text-accent">
