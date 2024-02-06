@@ -17,7 +17,7 @@ export default function PropertyCard({
   listingId,
   handleDelete,
 }) {
-  const { user } = useContext(AuthContext);
+  const { user, loggedIn } = useContext(AuthContext);
   const { pathname } = useLocation();
 
   return (
@@ -42,7 +42,7 @@ export default function PropertyCard({
                 House
               </span>
 
-              <Shortlist />
+              {loggedIn ? <Shortlist /> : ""}
             </div>
 
             {/* Price and Address */}

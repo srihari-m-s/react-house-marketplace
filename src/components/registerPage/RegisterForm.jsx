@@ -69,6 +69,7 @@ export default function RegisterForm() {
       delete userDetails.password;
       delete userDetails.confirmPassword;
       userDetails.createdAt = serverTimestamp();
+      userDetails.shortlisted = [];
 
       await setDoc(doc(db, "users", user.uid), userDetails);
 
